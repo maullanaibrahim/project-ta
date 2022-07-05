@@ -3,7 +3,8 @@
 				<!-- Brand Menu -->
 				<div class="app-brand demo">
 					<a href="/home" class="app-brand-link">
-						<h3 class="app-brand-text menu-text fw-bolder">e-Procurement</h3>
+					<img src="/dist/img/logo/logo2.png" class="rounded me-2" style="width:200px;height:70px;">
+						<!-- <h5 class="app-brand-text menu-text fw-bolder">e-Procurement</h5> -->
 					</a>
 				</div>
 				<!-- / Brand Menu -->
