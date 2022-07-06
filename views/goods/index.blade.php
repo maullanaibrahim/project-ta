@@ -27,12 +27,13 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td style="font-size:13px;">B-0001</td>
-									<td style="font-size:13px;">LAMPU LED T8 16 WATT PHILIPS ECOFIT</td>
-									<td style="font-size:13px;">UNIT</td>
-									<td class="font-size:13px;">{{ "Rp " . number_format(45000,2,',','.') }}</td>
-									<td class="font-size:13px;">3-4 HARI KERJA</td>
-									<td style="font-size:13px;">ELECTRICAL</td>
+									@foreach($barangs as $b)
+									<td style="font-size:13px;">{{ $b->kode_barang }}</td>
+									<td style="font-size:13px;">{{ $b->nama_barang }}</td>
+									<td style="font-size:13px;">{{ $b->satuan }}</td>
+									<td class="font-size:13px;">{{ "Rp " . number_format($b->harga,2,',','.') }}</td>
+									<td class="font-size:13px;">{{ $b->lead_time }}</td>
+									<td style="font-size:13px;">{{ $b->kategori }}</td>
 									<td style="font-size:13px;">
 										<a href="#"><button type="button" class="btn btn-outline-primary btn-sm">
 											<i class="bx bxs-edit me-1"></i> 
@@ -43,6 +44,7 @@
 											Hapus</button>
 										</a>
 									</td>
+									@endforeach
 								</tr>
 							</tbody>
 						</table>

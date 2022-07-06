@@ -16,11 +16,11 @@
                     <div class="col-md-2">PEMOHON</div>
                     <div class="col-md-3">: 
                         <div class="input-group w-75" style="margin:-30px 0px 0px 15px;">
-                            <select class="form-select border-0" id="inputGroupSelect01">
-                                <option selected>Pilih nama pemohon</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select class="form-select border-0" id="pemohon">
+                                <option selected disabled>Pilih nama pemohon</option>
+                                @foreach($karyawans as $k)
+                                <option value="{{ $k->id }}">{{ $k->nama_karyawan }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                     <div class="col-md-2">JABATAN</div>
                     <div class="col-md-3">: 
                         <div class="input-group w-75" style="margin:-30px 0px 0px 15px;">
-                            <input class="form-control border-0" disabled>
+                            <input class="form-control border-0" value="" disabled>
                         </div>
                     </div>
                 </div>
@@ -46,11 +46,11 @@
                     <div class="col-md-2">BEBAN BIAYA</div>
                     <div class="col-md-5">: 
                         <div class="input-group w-50 border-bottom" style="margin:-30px 0px 0px 15px;">
-                            <select class="form-select border-0" id="inputGroupSelect01">
-                                <option selected>Pilih beban biaya</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select class="form-select border-0" id="lokasi">
+                                <option selected disabled>Pilih beban biaya</option>
+                                @foreach($locations as $l)
+                                <option value="{{ $l->id }}">{{ $l->nama_lokasi }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -80,22 +80,22 @@
                                 <td><input class="form-control border-0" disabled></td>
                                 <td>
                                 <div class="input-group border-0">
-                                    <select class="form-select border-0" id="inputGroupSelect01">
-                                        <option selected>Pilih nama barang...</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <select class="form-select border-0" name="barang" id="barang">
+                                        <option selected disabled>Pilih nama barang...</option>
+                                        @foreach($barangs as $b)
+                                        <option value="{{ $b->id }}">{{ $b->nama_barang }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 </td>
                                 <td><input class="form-control border-0 text-center" placeholder="..."></td>
-                                <td class="text-center">-</td>
+                                <td class="text-center"><input name="satuan" id="satuan" class="form-control border-0" disabled></td>
                                 <td class="text-center">-</td>
                                 <td class="text-center">-</td>
                             </tr>
                             <tr>
                                 <td colspan="5" class="text-center"><strong>TOTAL HARGA</strong></td>
-                                <td class="text-center"><strong></strong></td>
+                                <td class="text-center"><strong>-</strong></td>
                             </tr>
                         </tbody>
                     </table>
@@ -114,7 +114,7 @@
                             <tr class="text-center">
                                 <td><input type="date" class="form-control border-0 text-center text-uppercase" placeholder="..."></td>
                                 <td><input class="form-control border-0 text-center text-uppercase" placeholder="Sebutkan alasan permintaan ..."></td>
-                                <td><input class="form-control border-0 text-uppercase" disabled></td>
+                                <td><input id="alokasi" class="form-control border-0 text-uppercase" disabled></td>
                             </tr>
                         </tbody>
                     </table>
@@ -138,4 +138,7 @@
 			, dibuat oleh : <a href="#" target="_blank" class="footer-link fw-bolder">MaullanaIbrahim</a>
         </p>
     </div>
+    <script type="text/javascript">
+        
+    </script>
 @endsection

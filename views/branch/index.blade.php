@@ -26,11 +26,12 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td style="font-size:13px;">KBA</td>
-									<td style="font-size:13px;">KOTA BARU PARAHYANGAN 2</td>
-									<td style="font-size:13px;">KOTA BARU PARAHYANGAN, KABUPATEN BANDUNG BARAT</td>
-									<td style="font-size:13px;">C</td>
-									<td style="font-size:13px;">01</td>
+									@foreach($locations as $l)
+									<td style="font-size:13px;">{{ $l->kode_lokasi }}</td>
+									<td style="font-size:13px;">{{ $l->nama_lokasi }}</td>
+									<td style="font-size:13px;">{{ $l->alamat_lokasi }}</td>
+									<td style="font-size:13px;">{{ $l->regional }}</td>
+									<td style="font-size:13px;">{{ $l->area }}</td>
 									<td style="font-size:13px;">
 										<a href="#">
 											<button type="button" class="btn btn-outline-warning btn-sm">
@@ -43,6 +44,7 @@
 											</button>
 										</a>
 									</td>
+									@endforeach
 								</tr>
 							</tbody>
 						</table>

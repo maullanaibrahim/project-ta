@@ -28,12 +28,13 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td style="font-size:13px;">S-0001</td>
-									<td style="font-size:13px;">BANGUN INDAH</td>
-									<td style="font-size:13px;">14 HARI</td>
-									<td style="font-size:13px;">08XX-XXXX-XXXX</td>
-									<td style="font-size:13px;">A NYANYANG</td>
-									<td style="font-size:13px;">GG. PECINAN LAMA, BANDUNG</td>
+									@foreach($suppliers as $s)
+									<td style="font-size:13px;">{{ $s->kode_supplier }}</td>
+									<td style="font-size:13px;">{{ $s->nama_supplier }}</td>
+									<td style="font-size:13px;">{{ $s->top }}</td>
+									<td style="font-size:13px;">{{ $s->kontak }}</td>
+									<td style="font-size:13px;">{{ $s->pic }}</td>
+									<td style="font-size:13px;">{{ $s->alamat }}</td>
 									<td style="font-size:13px;">
 										<a href="#">
 											<button type="button" class="btn btn-outline-primary btn-sm">
@@ -46,6 +47,7 @@
 											</button>
 										</a>
 									</td>
+									@endforeach
 								</tr>
 							</tbody>
 						</table>

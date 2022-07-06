@@ -71,6 +71,11 @@
                     wheelPropagation: false
                 });
 			});
+
+            $('#lokasi').change(function(){$
+            var alokasi = $(this).find('option:selected').data('nama_lokasi');
+            $('#alokasi').val(alokasi);
+        });
 		</script>
 	</div>
 	<!-- / Core JS -->
