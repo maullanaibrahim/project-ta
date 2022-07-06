@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Location;
 
 class branchController extends Controller
 {
     public function index()
     {
         return view('branch.index', [
-            "title" => "Data Lokasi"
+            "title" => "Data Lokasi",
+            "locations" => Location::all()
         ]);
     }
 }

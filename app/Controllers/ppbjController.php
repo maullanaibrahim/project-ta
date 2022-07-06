@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Ppbj;
+use App\Models\Karyawan;
+use App\Models\Location;
+use App\Models\Barang;
 
 class ppbjController extends Controller
 {
@@ -25,7 +28,10 @@ class ppbjController extends Controller
     public function create()
     {
         return view('ppbj.create', [
-            "title" => "Buat PPBJe Baru"
+            "title" => "Buat PPBJe Baru",
+            'karyawans' => Karyawan::all(),
+            'locations' => Location::all(),
+            'barangs' => Barang::all()
         ]);
     }
 
