@@ -47,7 +47,13 @@ Route::get('/ppbj-detail{id}', [ppbjController::class, 'show'])
     ->middleware('auth')->name('ppbj.detail');
 
 Route::get('/ppbj-create', [ppbjController::class, 'create'])
-    ->middleware('auth')->name('ppbj.index');
+    ->middleware('auth')->name('ppbj.create');
+
+Route::get('/ppbj-create/{id}', [ppbjController::class, 'getPemohon'])
+    ->middleware('auth')->name('getPemohon');
+
+Route::get('/ppbj-create2/{id}', [ppbjController::class, 'getBarang'])
+    ->middleware('auth')->name('getBarang');
 
 Route::get('/ppbj-store', [ppbjController::class, 'store'])
     ->middleware('auth')->name('ppbj.store');
@@ -88,8 +94,11 @@ Route::get('/costRequest-delete{id}', [costRequestController::class, 'destroy'])
 Route::get('/branch', [branchController::class, 'index'])
     ->middleware('auth')->name('branch.index');
 
-Route::get('/branch-create', [branchController::class, 'store'])
+Route::get('/branch-create', [branchController::class, 'create'])
     ->middleware('auth')->name('branch.create');
+
+Route::post('/branch-create', [branchController::class, 'store'])
+    ->middleware('auth')->name('branch.store');
 
 Route::get('/branch-update{id}', [branchController::class, 'update'])
     ->middleware('auth')->name('branch.update');
@@ -112,8 +121,11 @@ Route::get('/supplier-delete{id}', [supplierController::class, 'destroy'])
 Route::get('/goods', [goodsController::class, 'index'])
     ->middleware('auth')->name('goods.index');
 
-Route::get('/goods-create', [goodsController::class, 'store'])
+Route::get('/goods-create', [goodsController::class, 'create'])
     ->middleware('auth')->name('goods.create');
+
+Route::post('/goods-create', [goodsController::class, 'store'])
+    ->middleware('auth')->name('goods.store');
 
 Route::get('/goods-update{id}', [goodsController::class, 'update'])
     ->middleware('auth')->name('goods.update');
