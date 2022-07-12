@@ -35,6 +35,18 @@ class ppbjController extends Controller
         ]);
     }
 
+    public function getPemohon($id = 0)
+    {
+        $data = Karyawan::where('id',$id)->first();
+        return response()->json($data);
+    }
+
+    public function getBarang($id = 0)
+    {
+        $data = Barang::where('id',$id)->first();
+        return response()->json($data);
+    }
+
     public function store(Request $request){
         $post = new Ppbj();
         $post->tgl_ppbj = $request->input('tgl_ppbj');
