@@ -8,7 +8,7 @@
 				<div class="card-body" id="vertical-example">
 					<figure class="text-center">
 						<blockquote class="blockquote">
-							<h4><b>DATA PPBJe MASUK</b></h4>
+							<h4><b>DATA PPBJe</b></h4>
 						</blockquote>
 						<figcaption class="blockquote-footer"></figcaption>
 					</figure>
@@ -48,7 +48,7 @@
 				</div>
 				<div class="float-end mt-3 mb-4">
 					<a href="ppbj-create">
-						<button type="button" class="btn btn-outline-primary float-end me-4">
+						<button type="button" class="btn btn-primary float-end me-4">
 							<span class="tf-icons bx bx-plus"></span> Tambah PPBJe
 						</button>
 					</a>

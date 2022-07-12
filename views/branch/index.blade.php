@@ -25,8 +25,8 @@
 								</tr>
 							</thead>
 							<tbody>
+								@foreach($locations as $l)
 								<tr>
-									@foreach($locations as $l)
 									<td style="font-size:13px;">{{ $l->kode_lokasi }}</td>
 									<td style="font-size:13px;">{{ $l->nama_lokasi }}</td>
 									<td style="font-size:13px;">{{ $l->alamat_lokasi }}</td>
@@ -44,11 +44,18 @@
 											</button>
 										</a>
 									</td>
-									@endforeach
 								</tr>
+								@endforeach
 							</tbody>
 						</table>
 					</div>
+				</div>
+				<div class="float-end mt-3 mb-4">
+					<a href="branch-create">
+						<button type="button" class="btn btn-primary float-end me-4">
+							<span class="tf-icons bx bx-plus"></span> Tambah Lokasi
+						</button>
+					</a>
 				</div>
 			</div>
 		</div>

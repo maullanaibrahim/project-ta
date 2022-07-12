@@ -14,20 +14,11 @@
 
 				<!-- Sidebar Menu -->
 				<ul class="menu-inner py-1">
-					<!-- Menu Beranda -->
-					<li class="menu-item {{ ($title === 'Beranda') ? 'active' : '' }}">
-						<a href="/home" class="menu-link">
-						<i class="menu-icon tf-icons bx bx-home-circle"></i>
-						<div data-i18n="Analytics">Beranda</div>
-						</a>
-					</li>
-					<!-- / Menu Beranda -->
-
 					<!-- Menu PPBJ-e Masuk -->
 					<li class="menu-item {{ ($title === 'Data PPBJe') ? 'active' : '' }}">
 						<a href="/ppbj" class="menu-link">
 						<i class="menu-icon tf-icons bx bxs-receipt"></i>
-						<div data-i18n="Account Settings">PPBJ-e Masuk</div>
+						<div data-i18n="Account Settings">PPBJ-e</div>
 						</a>
 					</li>
 					<!-- / Menu PBJ-e Masuk -->

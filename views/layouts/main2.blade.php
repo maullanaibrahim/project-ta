@@ -15,7 +15,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="dist/img/favicon/iconym.ico" />
+    <link rel="icon" type="image/x-icon" href="dist/img/favicon/logo2.ico" />
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="dist/vendor/fonts/boxicons.css" />
     <!-- Core CSS -->
@@ -71,12 +71,8 @@
                     wheelPropagation: false
                 });
 			});
-
-            $('#lokasi').change(function(){$
-            var alokasi = $(this).find('option:selected').data('nama_lokasi');
-            $('#alokasi').val(alokasi);
-        });
-		</script>
+        </script>
+        @yield('js')
 	</div>
 	<!-- / Core JS -->
 </body>

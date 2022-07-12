@@ -53,6 +53,13 @@
 						</table>
 					</div>
 				</div>
+				<div class="float-end mt-3 mb-4">
+					<a href="ppbj-create">
+						<button type="button" class="btn btn-primary float-end me-4">
+							<span class="tf-icons bx bx-plus"></span> Tambah Supplier
+						</button>
+					</a>
+				</div>
 			</div>
 		</div>
     </div>
