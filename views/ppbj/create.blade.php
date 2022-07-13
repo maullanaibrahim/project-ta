@@ -97,7 +97,7 @@
                             <tr>
                                 <!-- <td class="text-center"><button type="button" class="btn btn-primary">+ barang</button></td> -->
                                 <td colspan="5" class="text-center"><strong>TOTAL HARGA</strong></td>
-                                <td class="text-center"><strong>-</strong></td>
+                                <td class="text-center"><strong><input name="total" id="total" class="form-control border-0 text-center" disabled></strong></td>
                             </tr>
                         </tbody>
                     </table>
