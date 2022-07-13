@@ -26,7 +26,7 @@ class branchController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'kode_lokasi' => 'required|max:3',
+            'kode_lokasi' => 'required|max:3|unique',
             'nama_lokasi' => 'required|max:100',
             'alamat_lokasi' => 'required|max:255',
             'regional' => 'required',
