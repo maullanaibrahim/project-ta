@@ -75,7 +75,7 @@
 										<form action="/logout" method="POST">
 											@csrf
 											<button type="submit" class="dropdown-item"><i class="bx bx-log-out me-2"></i> Keluar</button>
-                      					</a>
+										</form>
                     				</li>
 									<!-- / Menu Logout -->
                   				</ul>
