@@ -100,22 +100,31 @@ Route::get('/branch-create', [branchController::class, 'create'])
 Route::post('/branch-create', [branchController::class, 'store'])
     ->middleware('auth')->name('branch.store');
 
-Route::get('/branch-update{id}', [branchController::class, 'update'])
+Route::get('/branch-update{location}', [branchController::class, 'edit'])
+    ->middleware('auth')->name('branch.edit');
+
+Route::patch('/branch-update{location}', [branchController::class, 'update'])
     ->middleware('auth')->name('branch.update');
     
-Route::get('/branch-delete{id}', [branchController::class, 'destroy'])
+Route::delete('/branch-delete{location}', [branchController::class, 'destroy'])
     ->middleware('auth')->name('branch.delete');
 
 Route::get('/supplier', [supplierController::class, 'index'])
     ->middleware('auth')->name('supplier.index');
 
-Route::get('/supplier-create', [supplierController::class, 'store'])
+Route::get('/supplier-create', [supplierController::class, 'create'])
     ->middleware('auth')->name('supplier.create');
 
-Route::get('/supplier-update{id}', [supplierController::class, 'update'])
+Route::post('/supplier-create', [supplierController::class, 'store'])
+    ->middleware('auth')->name('supplier.store');
+
+Route::get('/supplier-update{supplier}', [supplierController::class, 'edit'])
+    ->middleware('auth')->name('supplier.edit');
+
+Route::patch('/supplier-update{supplier}', [supplierController::class, 'update'])
     ->middleware('auth')->name('supplier.update');
     
-Route::get('/supplier-delete{id}', [supplierController::class, 'destroy'])
+Route::delete('/supplier-delete{supplier}', [supplierController::class, 'destroy'])
     ->middleware('auth')->name('supplier.delete');
 
 Route::get('/goods', [goodsController::class, 'index'])
@@ -127,10 +136,13 @@ Route::get('/goods-create', [goodsController::class, 'create'])
 Route::post('/goods-create', [goodsController::class, 'store'])
     ->middleware('auth')->name('goods.store');
 
-Route::get('/goods-update{id}', [goodsController::class, 'update'])
+Route::get('/goods-update{barang}', [goodsController::class, 'edit'])
+    ->middleware('auth')->name('goods.edit');
+
+Route::patch('/goods-update{barang}', [goodsController::class, 'update'])
     ->middleware('auth')->name('goods.update');
     
-Route::get('/goods-delete{id}', [goodsController::class, 'destroy'])
+Route::delete('/goods-delete{barang}', [goodsController::class, 'destroy'])
     ->middleware('auth')->name('goods.delete');
 
 Route::get('/user', [userController::class, 'index'])
