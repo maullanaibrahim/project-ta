@@ -94,16 +94,16 @@
                                 <td><input type="number" name="harga" id="harga" class="form-control border-0 text-center" value="Rp." disabled></td>
                                 <td><input name="jumlah" id="jumlah" class="form-control border-0 text-center" disabled></td>
                             </tr>
+                        </tbody>
+                        <tbody>
                             <tr>
-                                <td class="text-center"><button id="btnTambah" type="button" class="btn btn-primary">+ barang</button></td>
-                                <td colspan="4" class="text-center"><strong>TOTAL HARGA</strong></td>
-                                <td class="text-center"><input name="total" id="total" class="form-control border-0 text-center fw-bold" disabled></td>
+                                <td colspan="5" class="text-center"><button id="btnTambah" type="button" class="btn btn-primary">+ barang</button></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-
-                <div class="table-responsive my-3">
+            </div>
+            <div class="table px-4">
                     <table class="table table-bordered">
                         <thead>
                             <tr class="text-center">
@@ -130,7 +130,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
             <div class="float-end mt-3">
                 <button type="submit" class="btn btn-outline-primary float-end me-4">
                     <span class="tf-icons bx bxs-save"></span> Simpan
@@ -154,7 +153,10 @@
 @endsection
 
 @section('js')
-    <script type="text/javascript">
+<script type="text/javascript">
+    $(document).ready(function(){ 
+ 
+    var count = 0;
         $('#pemohon').change(function(){
             var karyawan = $(this).val();
             var url = '{{ route("getPemohon", ":id") }}';
@@ -170,6 +172,62 @@
                     }
                 }
             });
+        });
+
+        $("#btnTambah").click(function(){
+            count = count + 1;
+            console.log(count);
+            $('#tBarang').append(
+                "<tr>\
+                    <td><input class=\"form-control border-0 text-center\" id=\"kode"+count+"\" name=\"kode[]\" id=\"kode2\" disabled></td>\
+                    <td>\
+                        <div class=\"input-group border-0\">\
+                            <select class=\"form-select border-0\" name=\"barang[]\" id=\"barang"+count+"\">\
+                                <option selected disabled>Pilih nama barang...</option>\
+                                @foreach($barangs as $b)\
+                                <option value=\"{{ $b->id }}\">{{ $b->nama_barang }}</option>\
+                                @endforeach\
+                            </select>\
+                        </div>\
+                    </td>\
+                    <td style=\"width:140px;\"><input type=\"number\" name=\"qty[]\" id=\"qty"+count+"\" class=\"form-control border-0 text-center\" placeholder=\"0\"></td>\
+                    <td style=\"width:150px;\"><input name=\"satuan[]\" id=\"satuan"+count+"\" class=\"form-control border-0 text-center\" disabled></td>\
+                    <td><input type=\"number\" name=\"harga[]\" id=\"harga"+count+"\" class=\"form-control border-0 text-center\" disabled></td>\
+                    <td><input name=\"jumlah[]\" id=\"jumlah"+count+"\" class=\"form-control border-0 text-center\" readonly></td>\
+                </tr>" + 
+                "<script>$('#barang"+count+"').change(function(){\
+                    var barang = $(this).val();\
+                    var url = '{{ route("getBarang", ":id") }}';\
+                    url = url.replace(':id', barang);\
+                    $.ajax({\
+                        url: url,\
+                        type: 'get',\
+                        dataType: 'json',\
+                        success: function(response){\
+                            if(response != null){\
+                                $('#kode"+count+"').val(response.kode_barang);\
+                                $('#satuan"+count+"').val(response.satuan);\
+                                var harga0 = response.harga;\
+                                \
+                                var	reverse = harga0.toString().split(').reverse().join('),\
+                                    ribuan 	= reverse.match(/\d{1,3}/g);\
+                                    harga1	= ribuan.join('.').split(').reverse().join(');\
+                                $('#harga"+count+"').val(harga1);\
+                                $('#qty"+count+"').change(function(){\
+                                    var qty = $(this).val();\
+                                    var harga = parseInt(response.harga);\
+                                    var jumlah0 = qty*harga;\
+                                    var	reverse = jumlah0.toString().split(').reverse().join('),\
+                                    ribuan 	= reverse.match(/\d{1,3}/g);\
+                                    jumlah1	= ribuan.join('.').split(').reverse().join(');\
+                                    $('#jumlah"+count+"').val(jumlah1);\
+                                });\
+                            }\
+                        }\
+                    });\
+                });<\/script>"
+            );
+
         });
 
         $('#barang').change(function(){
@@ -198,64 +256,11 @@
                             ribuan 	= reverse.match(/\d{1,3}/g);
                             jumlah1	= ribuan.join('.').split('').reverse().join('');
                             $('#jumlah').val(jumlah1);
-                            $('#total').val(jumlah1);
                         });
                     }
                 }
             });
         });
-        $("#btnTambah").click(function(){
-            $('#tBarang').prepend(
-                '<tr>\
-                    <td><input class="form-control border-0 text-center" name="kode2" id="kode2" disabled></td>\
-                    <td>\
-                        <div class="input-group border-0">\
-                            <select class="form-select border-0" name="barang2" id="barang2">\
-                                <option selected disabled>Pilih nama barang...</option>\
-                                @foreach($barangs as $b)\
-                                <option value="{{ $b->id }}">{{ $b->nama_barang }}</option>\
-                                @endforeach\
-                            </select>\
-                        </div>\
-                    </td>\
-                    <td style="width:140px;"><input type="number" name="qty2" id="qty2" class="form-control border-0 text-center" placeholder="0"></td>\
-                    <td style="width:150px;"><input name="satuan2" id="satuan2" class="form-control border-0 text-center" disabled></td>\
-                    <td><input type="number" name="harga2" id="harga2" class="form-control border-0 text-center" value="Rp." disabled></td>\
-                    <td><input name="jumlah2" id="jumlah2" class="form-control border-0 text-center" disabled></td>\
-                </tr>'
-            );
-        });
-
-        $('#barang2').change(function(){
-            var barang = $(this).val();
-            var url = '{{ route("getBarang", ":id") }}';
-            url = url.replace(':id', barang);
-            $.ajax({
-                url: url,
-                type: 'get',
-                dataType: 'json',
-                success: function(response){
-                    if(response != null){
-                        $('#kode2').val(response.kode_barang);
-                        $('#satuan2').val(response.satuan);
-                        var harga0 = response.harga;
-                                    
-                        var	reverse = harga0.toString().split('').reverse().join(''),
-                            ribuan 	= reverse.match(/\d{1,3}/g);
-                            harga1	= ribuan.join('.').split('').reverse().join('');
-                        $('#harga2').val(harga1);
-                        $('#qty2').change(function(){
-                            var qty = $(this).val();
-                            var harga = parseInt(response.harga);
-                            var jumlah0 = qty*harga;
-                            var	reverse = jumlah0.toString().split('').reverse().join(''),
-                            ribuan 	= reverse.match(/\d{1,3}/g);
-                            jumlah1	= ribuan.join('.').split('').reverse().join('');
-                            $('#jumlah2').val(jumlah1);
-                        });
-                    }
-                }
-            });
-        });
+    });
 	</script>
 @endsection
