@@ -68,6 +68,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr class="text-center">
+                                <th><a href="javascript:void(0)" class="btn btn-success btn-sm addRow">+</a></th>
                                 <th style="width: 150px;">KODE BARANG</th>
                                 <th>NAMA BARANG</th>
                                 <th style="width: 100px;">QTY</th>
@@ -78,10 +79,11 @@
                         </thead>
                         <tbody id="tBarang">
                             <tr>
-                                <td><input class="form-control border-0 text-center" name="kode" id="kode" disabled></td>
+                                <td></td>
+                                <td><input class="form-control border-0 text-center" name="kode[]" id="kode" disabled></td>
                                 <td>
                                 <div class="input-group border-0">
-                                    <select class="form-select border-0" name="barang" id="barang">
+                                    <select class="form-select border-0" name="barang[]" id="barang">
                                         <option selected disabled>Pilih nama barang...</option>
                                         @foreach($barangs as $b)
                                         <option value="{{ $b->id }}">{{ $b->nama_barang }}</option>
@@ -89,21 +91,14 @@
                                     </select>
                                 </div>
                                 </td>
-                                <td style="width:140px;"><input type="number" name="qty" id="qty" class="form-control border-0 text-center" placeholder="0"></td>
-                                <td style="width:150px;"><input name="satuan" id="satuan" class="form-control border-0 text-center" disabled></td>
-                                <td><input type="number" name="harga" id="harga" class="form-control border-0 text-center" value="Rp." disabled></td>
-                                <td><input name="jumlah" id="jumlah" class="form-control border-0 text-center" disabled></td>
-                            </tr>
-                        </tbody>
-                        <tbody>
-                            <tr>
-                                <td colspan="5" class="text-center"><button id="btnTambah" type="button" class="btn btn-primary">+ barang</button></td>
+                                <td style="width:140px;"><input type="number" name="qty[]" id="qty" class="form-control border-0 text-center" placeholder="0"></td>
+                                <td style="width:150px;"><input name="satuan[]" id="satuan" class="form-control border-0 text-center" disabled></td>
+                                <td><input type="number" name="harga[]" id="harga" class="form-control border-0 text-center" value="Rp." disabled></td>
+                                <td><input name="jumlah[]" id="jumlah" class="form-control border-0 text-center" disabled></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
-            <div class="table px-4">
                     <table class="table table-bordered">
                         <thead>
                             <tr class="text-center">
@@ -129,7 +124,7 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
+            </div>
             <div class="float-end mt-3">
                 <button type="submit" class="btn btn-outline-primary float-end me-4">
                     <span class="tf-icons bx bxs-save"></span> Simpan
@@ -174,62 +169,6 @@
             });
         });
 
-        $("#btnTambah").click(function(){
-            count = count + 1;
-            console.log(count);
-            $('#tBarang').append(
-                "<tr>\
-                    <td><input class=\"form-control border-0 text-center\" id=\"kode"+count+"\" name=\"kode[]\" id=\"kode2\" disabled></td>\
-                    <td>\
-                        <div class=\"input-group border-0\">\
-                            <select class=\"form-select border-0\" name=\"barang[]\" id=\"barang"+count+"\">\
-                                <option selected disabled>Pilih nama barang...</option>\
-                                @foreach($barangs as $b)\
-                                <option value=\"{{ $b->id }}\">{{ $b->nama_barang }}</option>\
-                                @endforeach\
-                            </select>\
-                        </div>\
-                    </td>\
-                    <td style=\"width:140px;\"><input type=\"number\" name=\"qty[]\" id=\"qty"+count+"\" class=\"form-control border-0 text-center\" placeholder=\"0\"></td>\
-                    <td style=\"width:150px;\"><input name=\"satuan[]\" id=\"satuan"+count+"\" class=\"form-control border-0 text-center\" disabled></td>\
-                    <td><input type=\"number\" name=\"harga[]\" id=\"harga"+count+"\" class=\"form-control border-0 text-center\" disabled></td>\
-                    <td><input name=\"jumlah[]\" id=\"jumlah"+count+"\" class=\"form-control border-0 text-center\" readonly></td>\
-                </tr>" + 
-                "<script>$('#barang"+count+"').change(function(){\
-                    var barang = $(this).val();\
-                    var url = '{{ route("getBarang", ":id") }}';\
-                    url = url.replace(':id', barang);\
-                    $.ajax({\
-                        url: url,\
-                        type: 'get',\
-                        dataType: 'json',\
-                        success: function(response){\
-                            if(response != null){\
-                                $('#kode"+count+"').val(response.kode_barang);\
-                                $('#satuan"+count+"').val(response.satuan);\
-                                var harga0 = response.harga;\
-                                \
-                                var	reverse = harga0.toString().split(').reverse().join('),\
-                                    ribuan 	= reverse.match(/\d{1,3}/g);\
-                                    harga1	= ribuan.join('.').split(').reverse().join(');\
-                                $('#harga"+count+"').val(harga1);\
-                                $('#qty"+count+"').change(function(){\
-                                    var qty = $(this).val();\
-                                    var harga = parseInt(response.harga);\
-                                    var jumlah0 = qty*harga;\
-                                    var	reverse = jumlah0.toString().split(').reverse().join('),\
-                                    ribuan 	= reverse.match(/\d{1,3}/g);\
-                                    jumlah1	= ribuan.join('.').split(').reverse().join(');\
-                                    $('#jumlah"+count+"').val(jumlah1);\
-                                });\
-                            }\
-                        }\
-                    });\
-                });<\/script>"
-            );
-
-        });
-
         $('#barang').change(function(){
             var barang = $(this).val();
             var url = '{{ route("getBarang", ":id") }}';
@@ -245,8 +184,8 @@
                         var harga0 = response.harga;
                                     
                         var	reverse = harga0.toString().split('').reverse().join(''),
-                            ribuan 	= reverse.match(/\d{1,3}/g);
-                            harga1	= ribuan.join('.').split('').reverse().join('');
+                        ribuan 	= reverse.match(/\d{1,3}/g);
+                        harga1	= ribuan.join('.').split('').reverse().join('');
                         $('#harga').val(harga1);
                         $('#qty').change(function(){
                             var qty = $(this).val();
@@ -261,6 +200,66 @@
                 }
             });
         });
+
+        $('thead').on('click', '.addRow', function(){
+            var tr = "<tr>"+
+                        "<td><a href='javascript:void(0)' class='btn btn-warning btn-sm deleteRow'>-</a></td>"+
+                        "<td><input class='form-control border-0 text-center' name='kode[]' id='kode"+count+"' disabled></td>"+
+                        "<td>"+
+                        "<div class='input-group border-0'>"+
+                            "<select class='form-select border-0' name='barang[]' id='barang"+count+"' autofocus>"+
+                                "<option selected disabled>Pilih nama barang...</option>"+
+                                "@foreach($barangs as $b)"+
+                                "<option value='{{ $b->id }}'>{{ $b->nama_barang }}</option>"+
+                                "@endforeach"+
+                            "</select>"+
+                        "</div>"+
+                        "</td>"+
+                        "<td style='width:140px;'><input type='number' name='qty[]' id='qty"+count+"' class='form-control border-0 text-center' placeholder='0'></td>"+
+                        "<td style='width:150px;'><input name='satuan[]' id='satuan"+count+"' class='form-control border-0 text-center' disabled></td>"+
+                        "<td><input type='number' name='harga[]' id='harga"+count+"' class='form-control border-0 text-center' value='Rp.' disabled></td>"+
+                        "<td><input name='jumlah[]' id='jumlah"+count+"' class='form-control border-0 text-center' disabled></td>"+
+                    "</tr>"+
+                    "<script>"+
+                        "$('#barang"+count+"').change(function(){"+
+                        "var barang = $(this).val();"+
+                        "var url = '{{ route("getBarang", ":id") }}';"+
+                        "url = url.replace(':id', barang);"+
+                        "$.ajax({"+
+                            "url: url,"+
+                            "type: 'get',"+
+                            "dataType: 'json',"+
+                            "success: function(response){"+
+                                "if(response != null){"+
+                                    "$('#kode"+count+"').val(response.kode_barang);"+
+                                    "$('#satuan"+count+"').val(response.satuan);"+
+                                    "var harga0 = response.harga;"+
+                                    "var reverse = harga0.toString().split('').reverse().join(''),"+
+                                    "ribuan = reverse.match("+/\d{1,3}/g+");"+
+                                    "harga1	= ribuan.join('.').split('').reverse().join('');"+
+                                    "$('#harga"+count+"').val(harga1);"+
+                                    "$('#qty"+count+"').change(function(){"+
+                                        "var qty = $(this).val();"+
+                                        "var harga = parseInt(response.harga);"+
+                                        "var jumlah0 = qty*harga;"+
+                                        "var reverse = jumlah0.toString().split('').reverse().join(''),"+
+                                        "ribuan = reverse.match("+/\d{1,3}/g+");"+
+                                        "jumlah1 = ribuan.join('.').split('').reverse().join('');"+
+                                        "$('#jumlah"+count+"').val(jumlah1);"+
+                                    "});"+
+                                "}"+
+                            "}"+
+                        "});"+
+                    "});"+
+                    "<\/script>"
+            count = count + 1;
+            console.log(count);
+            $('#tBarang').append(tr);
+        });
+        
+        $('#tBarang').on('click', '.deleteRow', function(){
+            $(this).parent().parent().remove();
+        })
     });
 	</script>
 @endsection
