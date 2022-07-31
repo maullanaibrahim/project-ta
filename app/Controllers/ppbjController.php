@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Ppbj;
+use App\Models\Ppbj_detail;
 use App\Models\Karyawan;
 use App\Models\Location;
 use App\Models\Barang;
@@ -14,7 +15,7 @@ class ppbjController extends Controller
     {
         $data = Ppbj::all();
         return view('ppbj.index', [
-            "data" => $data,
+            "data"  => $data,
             "title" => "Data PPBJe"
         ]);
     }
@@ -28,10 +29,10 @@ class ppbjController extends Controller
     public function create()
     {
         return view('ppbj.create', [
-            "title" => "Buat PPBJe Baru",
+            "title"     => "Buat PPBJe Baru",
             'karyawans' => Karyawan::all(),
             'locations' => Location::all(),
-            'barangs' => Barang::all()
+            'barangs'   => Barang::all()
         ]);
     }
 
@@ -47,21 +48,37 @@ class ppbjController extends Controller
         return response()->json($data);
     }
 
-    public function store(Request $request){
-        $post = new Ppbj();
-        $post->tgl_ppbj = $request->input('tgl_ppbj');
-        $post->no_ppbj = $request->input('no_ppbj');
-        $post->user_id = $request->input('user_id');
-        $post->karyawan_id = $request->input('karyawan_id');
-        $post->beban_biaya = $request->input('beban_biaya');
-        $post->alasan = $request->input('alasan');
-        $post->tgl_kebutuhan = $request->input('tgl_kebutuhan');
-        $post->total_harga = $request->input('total_harga');
-        $post->progress = $request->input('progress');
-        $post->keterangan = $request->input('keterangan');
-    
-        $post->save();
+    public function store(Request $request)
+    {
+        $data = $request->all();
+        // dd($data);
+        // $ppbj = new Ppbj;
+        // $ppbj->tgl_ppbj       = date('Y-m-d');
+        // $ppbj->no_ppbj        = $data['no_ppbj'];
+        // $ppbj->user_id        = $data['user_id'];
+        // $ppbj->karyawan_id    = $data['pemohon'];
+        // $ppbj->location_id    = $data['lokasi'];
+        // $ppbj->alasan         = $data['alasan'];
+        // $ppbj->tgl_kebutuhan  = $data['tgl_kebutuhan'];
+        // $ppbj->alokasi        = $data['alokasi'];
+        // $ppbj->save();
+        
+        // $detailppbj = new Ppbj_detail;
+        $barang     = count($data['barang']);
+        // $detailppbj->qty        = $data['qty'];
+        // $detailppbj->save();
 
+        if($barang > 0){
+            foreach ($data['barang'] as $item => $value ){
+                $data2 = array(
+                    // 'ppbj_id'       => $ppbj->id,
+                    'nama_barang'   => $data['barang'][$item],
+                    'qty'           => $data['qty'][$item]
+                );
+                dd($data2);
+                // Ppbj_detail::create($data2);
+            }
+        }
         return redirect()->route('ppbj.index');
     }
 
