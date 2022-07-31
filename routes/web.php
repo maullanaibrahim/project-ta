@@ -55,7 +55,7 @@ Route::get('/ppbj-create/{id}', [ppbjController::class, 'getPemohon'])
 Route::get('/ppbj-create2/{id}', [ppbjController::class, 'getBarang'])
     ->middleware('auth')->name('getBarang');
 
-Route::get('/ppbj-store', [ppbjController::class, 'store'])
+Route::post('/ppbj-create', [ppbjController::class, 'store'])
     ->middleware('auth')->name('ppbj.store');
 
 Route::get('/ppbj-update{id}', [ppbjController::class, 'update'])
