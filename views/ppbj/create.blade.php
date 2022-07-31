@@ -6,10 +6,12 @@
         <div class="card overflow-hidden mb-4 pt-2 pb-4" style="height: 515px;">
             <div class="card-body" id="vertical-example">
                 <form action="/ppbj-create" method="post">
+                @csrf
                 <div class="row my-2">
                     <div class="col-md-2">DIVISI</div>
-                    <div class="col-md-5">: 
+                    <div class="col-md-5">:
                         <div class="input-group w-50" style="margin:-30px 0px 0px 15px;">
+                            <input name="user_id" value="{{ auth()->user()->id }}" hidden>
                             <input name="" class="form-control border-0" value="{{ auth()->user()->divisi }}" disabled>
                         </div>
                     </div>
@@ -31,7 +33,7 @@
                     <div class="col-md-2">NOMOR PPBJe</div>
                     <div class="col-md-5">: 
                         <div class="input-group w-50 border-bottom" style="margin:-30px 0px 0px 15px;">
-                            <input class="form-control border-0 text-uppercase" placeholder="Ketikkan No. PPBJ...">
+                            <input type="text" name="no_ppbj" class="form-control border-0 text-uppercase" placeholder="Ketikkan No. PPBJ...">
                         </div>
                     </div>
                     
@@ -47,7 +49,7 @@
                     <div class="col-md-2">BEBAN BIAYA</div>
                     <div class="col-md-5">: 
                         <div class="input-group w-50 border-bottom" style="margin:-30px 0px 0px 15px;">
-                            <select class="form-select border-0" id="lokasi">
+                            <select class="form-select border-0" name="lokasi" id="lokasi">
                                 <option selected disabled>Pilih beban biaya</option>
                                 @foreach($locations as $l)
                                 <option value="{{ $l->id }}">{{ $l->nama_lokasi }}</option>
@@ -79,7 +81,7 @@
                         </thead>
                         <tbody id="tBarang">
                             <tr>
-                                <td></td>
+                                <td><a href='javascript:void(0)' class='btn btn-warning btn-sm deleteRow'>-</a>
                                 <td><input class="form-control border-0 text-center" name="kode[]" id="kode" disabled></td>
                                 <td>
                                 <div class="input-group border-0">
@@ -92,14 +94,14 @@
                                 </div>
                                 </td>
                                 <td style="width:140px;"><input type="number" name="qty[]" id="qty" class="form-control border-0 text-center" placeholder="0"></td>
-                                <td style="width:150px;"><input name="satuan[]" id="satuan" class="form-control border-0 text-center" disabled></td>
-                                <td><input type="number" name="harga[]" id="harga" class="form-control border-0 text-center" value="Rp." disabled></td>
-                                <td><input name="jumlah[]" id="jumlah" class="form-control border-0 text-center" disabled></td>
+                                <td style="width:150px;"><input name="satuan" id="satuan" class="form-control border-0 text-center" disabled></td>
+                                <td><input type="number" name="harga" id="harga" class="form-control border-0 text-center" disabled></td>
+                                <td><input name="jumlah" id="jumlah" class="form-control border-0 text-center" disabled></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered mt-2">
                         <thead>
                             <tr class="text-center">
                                 <th style="width: 230px;">TGL. KEBUTUHAN</th>
@@ -109,11 +111,11 @@
                         </thead>
                         <tbody>
                             <tr class="text-center">
-                                <td><input type="date" class="form-control border-0 text-center" placeholder="..."></td>
-                                <td><input type="text" class="form-control border-0 text-center text-uppercase" placeholder="Sebutkan alasan permintaan ..."></td>
+                                <td><input name="tgl_kebutuhan" type="date" class="form-control border-0 text-center" placeholder="..."></td>
+                                <td><textarea name="alasan" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea></td>
                                 <td style="width:300px;">
                                 <div class="input-group w-100">
-                                    <select class="form-select border-0 text-center" id="lokasi">
+                                    <select class="form-select border-0" name="alokasi" id="alokasi">
                                         <option selected disabled>Pilih alokasi barang</option>
                                         @foreach($locations as $l)
                                         <option value="{{ $l->id }}">{{ $l->nama_lokasi }}</option>
@@ -216,9 +218,9 @@
                         "</div>"+
                         "</td>"+
                         "<td style='width:140px;'><input type='number' name='qty[]' id='qty"+count+"' class='form-control border-0 text-center' placeholder='0'></td>"+
-                        "<td style='width:150px;'><input name='satuan[]' id='satuan"+count+"' class='form-control border-0 text-center' disabled></td>"+
-                        "<td><input type='number' name='harga[]' id='harga"+count+"' class='form-control border-0 text-center' value='Rp.' disabled></td>"+
-                        "<td><input name='jumlah[]' id='jumlah"+count+"' class='form-control border-0 text-center' disabled></td>"+
+                        "<td style='width:150px;'><input name='satuan' id='satuan"+count+"' class='form-control border-0 text-center' disabled></td>"+
+                        "<td><input type='number' name='harga' id='harga"+count+"' class='form-control border-0 text-center' value='Rp.' disabled></td>"+
+                        "<td><input name='jumlah' id='jumlah"+count+"' class='form-control border-0 text-center' disabled></td>"+
                     "</tr>"+
                     "<script>"+
                         "$('#barang"+count+"').change(function(){"+
