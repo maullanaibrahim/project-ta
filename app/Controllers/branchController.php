@@ -55,7 +55,6 @@ class branchController extends Controller
     {
         $rules = [
             'nama_lokasi' => 'required|max:100',
-            'alamat_lokasi' => 'required|max:255',
             'regional' => 'required',
             'area' => 'required',
         ];
