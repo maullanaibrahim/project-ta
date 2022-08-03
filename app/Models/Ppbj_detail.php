@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ppbj_detail extends Model
 {
-    protected $fillable = ['id', 'ppbj_id', 'kode_barang', 'qty', 'satuan', 'harga', 'jumlah', 'keterangan', 'jenis_barang'];
+    protected $guarded = ['id'];
 
     public function ppbj()
     {

@@ -9,4 +9,10 @@ class Location extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+
+    public function ppbj()
+    {
+        return $this->hasOne('App\Models\Ppbj');
+    }
 }
+

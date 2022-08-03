@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ppbj extends Model
 {
-    protected $fillable = ['no_ppbj', 'id_pembuat', 'id_pemohon', 'id_approval', 'beban_biaya', 'alasan', 'tgl_kebutuhan', 'total_harga', 'progress', 'catatan'];
+    protected $guarded = ['id'];
 
     public function ppbj_detail()
     {
@@ -26,6 +26,16 @@ class Ppbj extends Model
 
     public function ppbj_approval()
     {
-        return $this->belongsTo('App\Models\Ppbj_approval');
+        return $this->hasOne('App\Models\Ppbj_approval');
+    }
+
+    public function location()
+    {
+        return $this->belongsTo('App\Models\Location');
+    }
+
+    public function barang()
+    {
+        return $this->belongsTo('App\Models\Barang');
     }
 }
