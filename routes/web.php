@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\ppbjController;
+use App\Http\Controllers\ProsesPpbjController;
 use App\Http\Controllers\purchaseController;
 use App\Http\Controllers\costRequestController;
 use App\Http\Controllers\branchController;
@@ -58,11 +59,14 @@ Route::get('/ppbj-create2/{id}', [ppbjController::class, 'getBarang'])
 Route::post('/ppbj-create', [ppbjController::class, 'store'])
     ->middleware('auth')->name('ppbj.store');
 
-Route::get('/dash-create-ppbj/{id}', [ppbjController::class, 'dashCreate'])
+Route::get('/dash-create-ppbj{id}', [ppbjController::class, 'dashCreate'])
     ->middleware('auth')->name('ppbj.dash');
 
 Route::get('/ppbj-update{id}', [ppbjController::class, 'update'])
     ->middleware('auth')->name('ppbj.update');
+
+Route::post('/proses-ppbj', [ProsesPpbjController::class, 'index'])
+    ->middleware('auth')->name('proses.ppbj');
 
 Route::get('/purchase', [purchaseController::class, 'index'])
     ->middleware('auth')->name('purchase.index');
