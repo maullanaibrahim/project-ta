@@ -62,13 +62,13 @@ class supplierController extends Controller
             'alamat' => 'required'
         ];
 
-        if($request->kode_supplier != $supplier->kode_supplier){
+        if($request->id != $supplier->id){
             $rules['kode_supplier'] = 'required|unique:suppliers';
         }
 
         $validatedData = $request->validate($rules);
 
-        Supplier::where('id', $supplier->id)
+        Supplier::where('id', $request->id)
                 ->update($validatedData);
 
         return redirect('/supplier')->with('success', 'Data berhasil di Update!');
