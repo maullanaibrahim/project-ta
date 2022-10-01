@@ -17,4 +17,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Ppbj_approval');
     }
+
+    public function location()
+    {
+        return $this->belongsTo('App\Models\location');
+    }
 }

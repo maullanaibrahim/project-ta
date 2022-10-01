@@ -14,5 +14,10 @@ class Location extends Model
     {
         return $this->hasOne('App\Models\Ppbj');
     }
+
+    public function user()
+    {
+        return $this->hasOne('App\Models\User');
+    }
 }
 
