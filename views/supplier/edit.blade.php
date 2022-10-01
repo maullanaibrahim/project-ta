@@ -11,6 +11,7 @@
                     <div class="row g-2">
                         <div class="col-md-4">
                             <div class="form-floating mb-3">
+                            <input type="number" class="form-control" name="id" id="id" value="{{ $supplier->id }}" hidden>
                                 <input type="number" class="form-control @error('kode_supplier') is-invalid @enderror" name="kode_supplier" id="kode_supplier" value="{{ $supplier->kode_supplier }}" required readonly>
                                 <label>Kode Supplier</label>
                             </div>
@@ -41,7 +42,7 @@
                         <label>PIC Sales</label>
                     </div>
                     <div class="form-floating">
-                        <textarea class="form-control text-uppercase" placeholder="Ketikkan alamat supplier" id="alamat" name="alamat" style="height: 80px">{{ $supplier->alamat }}</textarea>
+                        <textarea class="form-control text-uppercase @error('pic') is-invalid @enderror" placeholder="Ketikkan alamat supplier" id="alamat" name="alamat" style="height: 80px">{{ $supplier->alamat }}</textarea>
                         <label>Alamat Supplier</label>
                     </div>
                 </div>

@@ -4,8 +4,6 @@
     <h4 class="fw-bold pt-5 text-center">PERMINTAAN PENGADAAN BARANG / JASA (e)</h4>
     <div class="container mt-4">
         <div class="card overflow-hidden mb-4 pt-2 pb-4">
-            <form action="/proses-ppbj" method="post">
-            @csrf
             <div class="card-body">
                 <div class="row my-2">
                     <div class="col-md-2">DIVISI</div>
@@ -29,8 +27,6 @@
                     <div class="col-md-3">: {{ $data->karyawan->nik }}</div>
                 </div>
                 <div class="table-responsive mt-4">
-                <form action="/proses-ppbj" method="post">
-                    @csrf
                     <table class="table table-bordered">
                         <thead>
                             <tr class="text-center">
@@ -44,15 +40,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($ppbj_details as $d)
+                        @foreach($ppbj_details as $d)
                             <tr>
-                                <td><input class="form-check-input" type="checkbox" value="{{ $d->barang->id }}" name="id[]"></td>
+                                <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
                                 <td class="text-center"><a href>{{ $d->keterangan }}</a></td>
                                 <td>{{ $d->barang->nama_barang }}</td>
                                 <td class="text-center">{{ $d->qty }}</td>
-                                <td class="text-center">{{ $d->satuan }}</td>
-                                <td class="text-center">{{ "Rp " . number_format($d->harga,2,',','.') }}</td>
-                                <td class="text-center">{{ "Rp " . number_format($d->jumlah,2,',','.') }}</td>
+                                <td class="text-center">{{ $d->barang->satuan }}</td>
+                                <td class="text-center">{{ "Rp " . number_format($d->barang->harga,2,',','.') }}</td>
+                                <td class="text-center">{{ "Rp " . number_format($d->barang->harga*$d->qty,2,',','.') }}</td>
                             </tr>
                             @endforeach
                             <tr>
@@ -71,7 +67,7 @@
                                                     <div class="card p-0 me-4" style="width: 30%;">
                                                         <img src="/dist/img/icons/po2.jpg" class="card-img-top mb-card" alt="...">
                                                         <div class="card-body">
-                                                            <button type="submit" class="btn btn-primary w-100">Purchase Order</a>
+                                                            <a href="{{ route('purchase.create',$data->ppbj_detail->id) }}" class="btn btn-primary w-100">Purchase Order</a>
                                                         </div>
                                                     </div>
                                                     <div class="card p-0 me-4" style="width: 30%;">
@@ -99,8 +95,8 @@
                             </tr>
                         </tbody>
                     </table>
-                </form>
                 </div>
+
                 <div class="table-responsive my-3">
                     <table class="table table-bordered">
                         <thead>
@@ -146,8 +142,7 @@
                     <span class="tf-icons bx bx-caret-left"></span> Kembali
                     </button>
                 </a>
-            </div>                
-            </form>
+            </div>
         </div>
         <p class="text-center">
             © <script>document.write(new Date().getFullYear());</script>

@@ -34,7 +34,7 @@
 									  class="form-control" 
 									  id="floatingInputGrid" 
 									  value="KOTA BARU PARAHYANGAN 2" 
-									  disabled
+									  readonly
 									>
 									<label for="floatingInputGrid">Beban Biaya</label>
 								</div>
@@ -45,7 +45,7 @@
 									  class="form-control" 
 									  id="floatingInputGrid" 
 									  value="PT. GRIYA PRATAMA" 
-									  disabled
+									  readonly
 									>
 									<label for="floatingInputGrid">Ditujukan Untuk</label>
 								</div>
@@ -56,7 +56,7 @@
 									  class="form-control" 
 									  id="floatingInputGrid" 
 									  value="NON ASSET" 
-									  disabled
+									  readonly
 									>
 									<label for="floatingInputGrid">Jenis PO</label>
 								</div>
@@ -67,7 +67,7 @@
 									  class="form-control" 
 									  id="floatingInputGrid"
 									  value="MAULANA"
-									  disabled
+									  readonly
 									>
 									<label for="floatingInputGrid">Dibuat Oleh</label>
 								</div>
@@ -77,7 +77,7 @@
 							<div class="col-auto">
 								<div class="form-floating">
 									<select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-    									<option selected disabled>Pilih Supplier</option>
+    									<option selected readonly>Pilih Supplier</option>
     									<option value="1">ANUGRAH JAYA ELEKTRINDO</option>
     									<option value="2">BANGUN INDAH</option>
 										<option value="2">COMPUMAX</option>
@@ -93,7 +93,7 @@
 									  class="form-control" 
 									  id="floatingInputGrid" 
 									  value="Tempo Pembayaran" 
-									  disabled
+									  readonly
 									>
 									<label for="floatingInputGrid">TOP</label>
 								</div>
@@ -104,7 +104,7 @@
 									  class="form-control" 
 									  id="floatingInputGrid" 
 									  value="No. Telp / Fax / WA" 
-									  disabled
+									  readonly
 									>
 									<label for="floatingInputGrid">Kontak Supplier</label>
 								</div>
@@ -115,7 +115,7 @@
 									  class="form-control" 
 									  id="floatingInputGrid" 
 									  value="Alamat Lengkap" 
-									  disabled
+									  readonly
 									>
 									<label for="floatingInputGrid">Alamat Supplier</label>
 								</div>
@@ -148,42 +148,42 @@
 						<br>
 
 						<div class="dropdown-divider"></div>	
-
+						@foreach($barang as $b)
 						<div class="row g-2" style="margin-bottom:8px;">
 							<div class="col-sm">
 								<label class="form-label">Kode</label>
-								<input type="text" class="form-control" id="inputText1" disabled>
+								<input type="text" class="form-control" id="inputText1" readonly>
 							</div>
 							<div class="col-md-2">
 								<label class="form-label">Nama Barang / Jasa</label>
-								<input type="text" class="form-control" id="InputText2" disabled>
+								<input type="text" class="form-control" id="InputText2" value="{{ $b->nama_barang }}" readonly>
 							</div>
 							<div class="col-md">
 								<label class="form-label">QTY</label>
-								<input type="text" class="form-control" id="InputText3" disabled>
+								<input type="text" class="form-control" id="InputText3" readonly>
 							</div>
 							<div class="col-md">
 								<label class="form-label">Satuan</label>
-								<input type="text" class="form-control" id="InputText4" disabled>
+								<input type="text" class="form-control" id="InputText4" readonly>
 							</div>
 							<div class="col-md-2">
 								<label class="form-label">Harga</label>
-								<input type="text" class="form-control" id="inputText5" disabled>
+								<input type="text" class="form-control" id="inputText5" readonly>
 							</div>
 							<div class="col-md">
 								<label class="form-label">Disc (Rp)</label>
-								<input type="text" class="form-control" id="inputText6" disabled>
+								<input type="text" class="form-control" id="inputText6" readonly>
 							</div>
 							<div class="col-md">
 								<label class="form-label">Disc (%)</label>
-								<input type="text" class="form-control" id="inputText7" disabled>
+								<input type="text" class="form-control" id="inputText7" readonly>
 							</div>
 							<div class="col-md-2">
 								<label class="form-label">Jumlah (Rp)</label>
-								<input type="text" class="form-control" id="inputText8" disabled>
+								<input type="text" class="form-control" id="inputText8" readonly>
 							</div>
 						</div>
-
+						@endforeach
 						<div class="dropdown-divider"></div>
 
 					</div>

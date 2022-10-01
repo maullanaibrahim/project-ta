@@ -27,10 +27,10 @@
 							<tbody>
 								@foreach($data as $p)
 								<tr>
-									<td style="font-size:13px;">{{ date('d-M-Y', strtotime($p->ppbj_approval->updated_at)); }}</td>
-									<td style="font-size:13px;">{{ $p->no_ppbj }}</td>
-									<td style="font-size:13px;">{{ $p->beban_biaya }}</td>
-									<td style="font-size:13px;">{{ $p->ppbj_detail->nama_barang }}</td>
+									<td class="text-uppercase" style="font-size:13px;">{{ date('d-M-Y', strtotime($p->ppbj_approval->updated_at)); }}</td>
+									<td class="text-uppercase" style="font-size:13px;">{{ $p->no_ppbj }}</td>
+									<td class="text-uppercase" style="font-size:13px;">{{ $p->location->nama_lokasi }}</td>
+									<td class="text-uppercase" style="font-size:13px;">{{ $p->ppbj_detail->barang->nama_barang }}, DLL</td>
 									<td style="font-size:13px;">
 										<div class="progress" style="height:15px;">
 											<div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: <?php echo $p->progress ?>;height:15px;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"><?php echo $p->progress ?></div>

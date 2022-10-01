@@ -17,7 +17,7 @@
                         <label>Nama Lokasi</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <textarea class="form-control text-uppercase @error('alamat_lokasi') is-invalid @enderror" placeholder="Tuliskan alamat lengkap disini" name="alamat_lokasi" id="alamat_lokasi" style="height: 100px" required>{{ $location->alamat_lokasi }}</textarea>
+                        <textarea class="form-control text-uppercase @error('alamat_lokasi') is-invalid @enderror" name="alamat_lokasi" id="alamat_lokasi" style="height: 100px" required>{{ $location->alamat_lokasi }}</textarea>
                         <label>Alamat Lokasi</label>
                     </div>
                     <div class="form-floating mb-3">
